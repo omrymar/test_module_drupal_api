@@ -1,0 +1,9 @@
+ffw_test_module.node_view_statistics:
+  js:
+    js/node_view_statistics.js: {}
+  dependencies:
+    - core/drupal
+    - core/drupal.ajax
+    - core/drupalSettings
+    - core/jquery
+

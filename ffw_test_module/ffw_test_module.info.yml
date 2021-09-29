@@ -1,0 +1,9 @@
+name: FFW Test Module
+type: module
+description: 'FFW Test Module to show work with different Drupal 8 API"s'
+package: 'Custom'
+dependencies:
+  - drupal:user
+  - drupal:node
+  - drupal:views
+core_version_requirement: ^8 || ^9

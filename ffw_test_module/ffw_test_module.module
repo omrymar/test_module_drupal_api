@@ -1,0 +1,44 @@
+<?php
+
+/**
+ * @file
+ * ffw_test_module.module functionality
+ */
+
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_theme().
+ */
+function ffw_test_module_theme($existing, $type, $theme, $path) {
+  return [
+    'ffw_test_module_get_random_quote' => [
+      'variables' => [
+        'quote' => NULL,
+      ],
+    ],
+    'ffw_test_module_node_views_statistics_block' => [
+      'variables' => [
+        'user_name' => NULL,
+        'daycount' => NULL,
+        'totalcount' => NULL,
+        'timestamp' => NULL,
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view().
+ */
+function ffw_test_module_node_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
+  if (($view_mode === 'full') && node_is_page($entity) && empty($entity->in_preview) && !$entity->isNew()) {
+    // Attach the js library which will send the
+    // POST request to the node view statistics controller
+    $build['#attached']['library'][] = 'ffw_test_module/ffw_test_module.node_view_statistics';
+    $build['#attached']['drupalSettings']['ffw_test_module']['url'] =
+      trim(Url::fromRoute('ffw_test_module.node_views_statistics', ['node' => $entity->id()])->toString(), '/');
+  }
+}

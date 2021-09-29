@@ -1,0 +1,23 @@
+ffw_test_module.page.custom_site_settings:
+  path: '/custom-site-settings'
+  defaults:
+    _title: 'Custom site settings'
+    _form: '\Drupal\ffw_test_module\Form\CustomSiteSettingsForm'
+  requirements:
+    _permission: 'administer ffw_test_module'
+
+ffw_test_module.page.article_nodes_publishing:
+  path: '/publish-control'
+  defaults:
+    _title: 'Control publishing options'
+    _form: '\Drupal\ffw_test_module\Form\HandleArticleNodesPublishingForm'
+  requirements:
+    _permission: 'access content'
+
+ffw_test_module.node_views_statistics:
+  path: '/ffw-test-module/view-node-entity/{node}'
+  defaults:
+    _controller: '\Drupal\ffw_test_module\Controller\NodeViewStatisticController::viewNodeEntity'
+  requirements:
+    _access: 'TRUE'
+    node: \d+

@@ -1,0 +1,16 @@
+{% block node_views_statistics %}
+  <div class="node-views-statistics-main-block-wrapper">
+    {% if daycount and totalcount %}
+      <div class="node-views-statistics-block">
+        {% trans %}Number of views: {{ daycount }} today / {{ totalcount }} total{% endtrans %}
+      </div>
+    {% endif %}
+    {% if user_name and timestamp %}
+      <div class="node-views-statistics-user-data-block">
+        <span style="text-decoration: underline; text-underline-position: under;">
+          {% trans %}Last viewed by: {{ user_name }} at {{ timestamp }} {% endtrans %}
+        </span>
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}

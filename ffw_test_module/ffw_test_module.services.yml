@@ -1,0 +1,12 @@
+services:
+  logger.channel.fw_test_module:
+    parent: logger.channel_base
+    arguments: ['fw_test_module']
+
+  ffw_test_module.get_random_quote_service:
+    class: Drupal\ffw_test_module\Services\RandomQuotesService
+    arguments: [ '@logger.channel.fw_test_module', '@http_client' ]
+
+  ffw_test_module.node_views_statistic_storage:
+    class: Drupal\ffw_test_module\NodeViewStatisticsStorage
+    arguments: ['@database','@request_stack' ]
